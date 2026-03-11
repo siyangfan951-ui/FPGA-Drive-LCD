@@ -1,4 +1,4 @@
-set_property SRC_FILE_INFO {cfile:C:/Users/lenovo/OneDrive/Desktop/electric/lcd_display/lcd_display.srcs/constrs_1/new/lcd_display.xdc rfile:../../../lcd_display.srcs/constrs_1/new/lcd_display.xdc id:1} [current_design]
+set_property SRC_FILE_INFO {cfile:D:/Git_Libary/test1/lcd_display/lcd_display.srcs/constrs_1/new/lcd_display.xdc rfile:../../../lcd_display.srcs/constrs_1/new/lcd_display.xdc id:1} [current_design]
 set_property src_info {type:XDC file:1 line:1 export:INPUT save:INPUT read:READ} [current_design]
 set_property -dict {PACKAGE_PIN U18 IOSTANDARD LVCMOS33} [get_ports sys_clk]
 set_property src_info {type:XDC file:1 line:2 export:INPUT save:INPUT read:READ} [current_design]

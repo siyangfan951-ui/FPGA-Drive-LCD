@@ -3,7 +3,7 @@
 <!--                                                         -->
 <!-- Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.   -->
 
-<Project Version="7" Minor="39" Path="C:/Users/lenovo/OneDrive/Desktop/electric/lcd_display/lcd_display.xpr">
+<Project Version="7" Minor="39" Path="D:/Git_Libary/test1/lcd_display/lcd_display.xpr">
   <DefaultLaunch Dir="$PRUNDIR"/>
   <Configuration>
     <Option Name="Id" Val="bb10369e161f47cca8858c48d54b5758"/>

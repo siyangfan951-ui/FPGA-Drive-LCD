@@ -24,7 +24,7 @@ else
 fi
 export LD_LIBRARY_PATH
 
-HD_PWD='C:/Users/lenovo/OneDrive/Desktop/electric/lcd_display/lcd_display.runs/impl_1'
+HD_PWD='D:/Git_Libary/test1/lcd_display/lcd_display.runs/impl_1'
 cd "$HD_PWD"
 
 HD_LOG=runme.log

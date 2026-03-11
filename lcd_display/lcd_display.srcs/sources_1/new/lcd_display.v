@@ -301,57 +301,116 @@ end
 //曲线的判断
 // ================== 显示波形（平滑曲线） ==================
 // 比例: 1v = 160 像素
-reg [9:0] mag_lut [31:0]; 
+// 更新: 64个采样点，每点占据16像素，频率步进75Hz
+(* rom_style = "block" *)	reg [9:0] mag_lut [63:0]; 
 
 initial begin
-    // 0Hz - 1350Hz (包含 300Hz 上升沿)
-    mag_lut[0]  = 10'd0;   mag_lut[1]  = 10'd16;  mag_lut[2]  = 10'd226; // 0V, 0.1V, 1.41V
-    mag_lut[3]  = 10'd315; mag_lut[4]  = 10'd320; mag_lut[5]  = 10'd320; // 2.0V 平台
-    mag_lut[6]  = 10'd320; mag_lut[7]  = 10'd320; mag_lut[8]  = 10'd320; 
-    mag_lut[9]  = 10'd320; mag_lut[10] = 10'd320; mag_lut[11] = 10'd320;
+	mag_lut[0 ] = 10'd0				;
+	mag_lut[1 ] = 10'd1        		;
+	mag_lut[2 ] = 10'd15       		;
+	mag_lut[3 ] = 10'd83       		;
+	mag_lut[4 ] = 10'd225		    ;
+	mag_lut[5 ] = 10'd304         	;
+	mag_lut[6 ] = 10'd317         	;
+	mag_lut[7 ] = 10'd320         	;
+	mag_lut[8 ] = 10'd320         	;
+	mag_lut[9 ] = 10'd320         	;
+	mag_lut[10] = 10'd320         	;
+	mag_lut[11] = 10'd320         	;
+	mag_lut[12] = 10'd320         	;
+	mag_lut[13] = 10'd320         	;
+	mag_lut[14] = 10'd320         	;
+	mag_lut[15] = 10'd320         	;
+	mag_lut[16] = 10'd320         	;
+	mag_lut[17] = 10'd320         	;
+	mag_lut[18] = 10'd320         	;
+	mag_lut[19] = 10'd320         	;
+	mag_lut[20] = 10'd320         	;
+	mag_lut[21] = 10'd320         	;
+	mag_lut[22] = 10'd320         	;
+	mag_lut[23] = 10'd320         	;
+	mag_lut[24] = 10'd320         	;
+	mag_lut[25] = 10'd320         	;
+	mag_lut[26] = 10'd320         	;
+	mag_lut[27] = 10'd320         	;
+	mag_lut[28] = 10'd320         	;
+	mag_lut[29] = 10'd320         	;
+	mag_lut[30] = 10'd317       	;
+	mag_lut[31] = 10'd317       	;
+	mag_lut[32] = 10'd315       	;
+	mag_lut[33] = 10'd313      		;
+	mag_lut[34] = 10'd310       	;
+	mag_lut[35] = 10'd307       	;
+	mag_lut[36] = 10'd304         	;
+	mag_lut[37] = 10'd301       	;
+	mag_lut[38] = 10'd294       	;
+	mag_lut[39] = 10'd288         	;
+	mag_lut[40] = 10'd283       	;
+	mag_lut[41] = 10'd272         	;
+	mag_lut[42] = 10'd262      		;
+	mag_lut[43] = 10'd249       	;
+	mag_lut[44] = 10'd240         	;
+	mag_lut[45] = 10'd229       	;
+	mag_lut[46] = 10'd217       	;
+	mag_lut[47] = 10'd205      		;
+	mag_lut[48] = 10'd192         	;
+	mag_lut[49] = 10'd182       	;
+	mag_lut[50] = 10'd169       	;
+	mag_lut[51] = 10'd157       	;
+	mag_lut[52] = 10'd147      		;
+	mag_lut[53] = 10'd138       	;
+	mag_lut[54] = 10'd128         	;
+	mag_lut[55] = 10'd118       	;
+	mag_lut[56] = 10'd112         	;
+	mag_lut[57] = 10'd104         	;
+	mag_lut[58] = 10'd96         	;
+	mag_lut[59] = 10'd91       		;
+	mag_lut[60] = 10'd85        	;
+	mag_lut[61] = 10'd78        	;
+	mag_lut[62] = 10'd75       		;
+	mag_lut[63] = 10'd69        	;
 
-    // 1500Hz - 2100Hz (通带平坦区)
-    mag_lut[12] = 10'd320; mag_lut[13] = 10'd320; mag_lut[14] = 10'd320; 
-
-    // 2250Hz - 4650Hz (包含 3400Hz 下降沿)
-    mag_lut[15] = 10'd318; mag_lut[16] = 10'd315; mag_lut[17] = 10'd310; // 2400Hz(1.97V)
-    mag_lut[18] = 10'd288; mag_lut[19] = 10'd285; mag_lut[20] = 10'd283; // 2700(1.8V), 3000(1.77V)
-    mag_lut[21] = 10'd262; mag_lut[22] = 10'd240; mag_lut[23] = 10'd216; // 3300(1.5V)
-    mag_lut[24] = 10'd192; mag_lut[25] = 10'd170; mag_lut[26] = 10'd147; // 3600(1.2V), 3900(0.92V)
-    mag_lut[27] = 10'd130; mag_lut[28] = 10'd112; mag_lut[29] = 10'd98;  // 4200(0.7V)
-    mag_lut[30] = 10'd85;  mag_lut[31] = 10'd72;  // 4500(0.53V)
 end
 
-// ================== 2. 曲线插值逻辑 (适配 32 像素间距) ==================
-// ================== 修正后的曲线插值逻辑 ==================
+// ================== 2. 曲线插值逻辑 (适配 16 像素间距，64采样点) ==================
 wire [10:0] curve_x_offset = (pixel_xpos >= AXIS_X0) ? (pixel_xpos - AXIS_X0) : 11'd0;
-// 确保索引足够大，且防止越界
-wire [5:0]  curve_idx_raw = curve_x_offset >> 5; 
-wire [4:0]  curve_idx     = (curve_idx_raw > 30) ? 5'd30 : curve_idx_raw[4:0]; 
-wire [4:0]  curve_dx      = curve_x_offset[4:0]; 
+
+// 像素偏移除以16 (>>4) 获得LUT索引。最大索引防止越过62 (留1个给+1插值)
+wire [6:0]  curve_idx_raw = curve_x_offset >> 4; 
+wire [5:0]  curve_idx     = (curve_idx_raw > 62) ? 6'd62 : curve_idx_raw[5:0]; 
+wire [3:0]  curve_dx      = curve_x_offset[3:0]; // 局部像素偏移 0~15
 
 // 获取相邻点高度
 wire [9:0] y_h0 = mag_lut[curve_idx];
-wire [9:0] y_h1 = mag_lut[curve_idx + 1]; // 采样点 +1
+wire [9:0] y_h1 = mag_lut[curve_idx + 1]; 
 
-// 平滑插值计算 (确保中间位宽足够)
-wire [9:0]  dx_sq = curve_dx * curve_dx;             // 5bit * 5bit = 10bit
-wire [7:0]  term2 = 8'd96 - (curve_dx << 1);          // 96 - 2*dx
-wire [17:0] blend_weight_full = dx_sq * term2;        // 10bit * 8bit = 18bit
-wire [6:0]  blend_weight = blend_weight_full >> 9;    // 缩放到 0~64 范围
+// 平滑插值计算 (适配 W=16 的三次平滑多项式插值)
+// 权重公式映射到 0~64: (dx^2 * (48 - 2*dx)) / 64
+wire [7:0]  dx_sq = curve_dx * curve_dx;              // 4bit * 4bit = 8bit
+wire [5:0]  term2 = 6'd48 - (curve_dx << 1);          // 48 - 2*dx
+wire [13:0] blend_weight_full = dx_sq * term2;        // 8bit * 6bit = 14bit
+wire [6:0]  blend_weight = blend_weight_full >> 6;    // 缩放到 0~64 范围
 
-// 高度过渡计算 (重点修复：使用 18 位中间变量)
+// 高度过渡计算 
 wire [10:0] y_diff   = (y_h1 >= y_h0) ? (y_h1 - y_h0) : (y_h0 - y_h1);
 wire [17:0] y_prod   = y_diff * blend_weight;         // 11bit * 7bit = 18bit
-wire [10:0] y_interp = y_prod >> 6;                   // 现在右移是安全的
+wire [10:0] y_interp = y_prod >> 6;                   // 除以64得到实际高度差
 
 wire [10:0] curve_y_offset = (y_h1 >= y_h0) ? (y_h0 + y_interp) : (y_h0 - y_interp);
 wire [10:0] curve_y_pos    = AXIS_Y0 - curve_y_offset;
 
+// ================== 修改点开始 ==================
+// 动态计算曲线线宽补偿：(y_diff >> 4) 相当于 y_diff / 16，即当前区间的平均斜率。
+// 斜率越大，上下延伸的像素越多，完美填补相邻 X 像素间的 Y 轴断层。
+// 基础线宽保留为 1（与原代码一致）。
+wire [10:0] curve_thickness = (y_diff >> 4) + 11'd1;
+
 // 绘制范围限制
+// 注意：为了避免无符号数在 0 附近做减法发生下溢，原先的 (pixel_ypos >= curve_y_pos - ...) 
+// 变换为加法逻辑：(pixel_ypos + curve_thickness >= curve_y_pos)
 wire is_curve_area = (pixel_xpos >= AXIS_X0 && pixel_xpos <= 1092) && 
-                     (pixel_ypos >= curve_y_pos - 1) && 
-                     (pixel_ypos <= curve_y_pos + 1);
+                     (pixel_ypos + curve_thickness >= curve_y_pos) && 
+                     (pixel_ypos <= curve_y_pos + curve_thickness);
 // ==========================================================
 
 

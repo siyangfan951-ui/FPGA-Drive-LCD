@@ -18,29 +18,28 @@ proc create_report { reportName command } {
   }
 }
 set_param xicom.use_bs_reader 1
-set_msg_config -id {Common 17-41} -limit 10000000
 create_project -in_memory -part xc7z020clg400-2
 
 set_param project.singleFileAddWarning.threshold 0
 set_param project.compositeFile.enableAutoGeneration 0
 set_param synth.vivado.isSynthRun true
 set_msg_config -source 4 -id {IP_Flow 19-2162} -severity warning -new_severity info
-set_property webtalk.parent_dir C:/Users/lenovo/OneDrive/Desktop/electric/lcd_display/lcd_display.cache/wt [current_project]
-set_property parent.project_path C:/Users/lenovo/OneDrive/Desktop/electric/lcd_display/lcd_display.xpr [current_project]
+set_property webtalk.parent_dir D:/Git_Libary/test1/lcd_display/lcd_display.cache/wt [current_project]
+set_property parent.project_path D:/Git_Libary/test1/lcd_display/lcd_display.xpr [current_project]
 set_property default_lib xil_defaultlib [current_project]
 set_property target_language Verilog [current_project]
-set_property ip_output_repo c:/Users/lenovo/OneDrive/Desktop/electric/lcd_display/lcd_display.cache/ip [current_project]
+set_property ip_output_repo d:/Git_Libary/test1/lcd_display/lcd_display.cache/ip [current_project]
 set_property ip_cache_permissions {read write} [current_project]
 read_verilog -library xil_defaultlib {
-  C:/Users/lenovo/OneDrive/Desktop/electric/lcd_display/lcd_display.srcs/sources_1/new/clk_div.v
-  C:/Users/lenovo/OneDrive/Desktop/electric/lcd_display/lcd_display.srcs/sources_1/new/lcd_display.v
-  C:/Users/lenovo/OneDrive/Desktop/electric/lcd_display/lcd_display.srcs/sources_1/new/lcd_driver.v
-  C:/Users/lenovo/OneDrive/Desktop/electric/lcd_display/lcd_display.srcs/sources_1/new/rd_id.v
-  C:/Users/lenovo/OneDrive/Desktop/electric/lcd_display/lcd_display.srcs/sources_1/new/top_lcd_display.v
+  D:/Git_Libary/test1/lcd_display/lcd_display.srcs/sources_1/new/clk_div.v
+  D:/Git_Libary/test1/lcd_display/lcd_display.srcs/sources_1/new/lcd_display.v
+  D:/Git_Libary/test1/lcd_display/lcd_display.srcs/sources_1/new/lcd_driver.v
+  D:/Git_Libary/test1/lcd_display/lcd_display.srcs/sources_1/new/rd_id.v
+  D:/Git_Libary/test1/lcd_display/lcd_display.srcs/sources_1/new/top_lcd_display.v
 }
-read_ip -quiet C:/Users/lenovo/OneDrive/Desktop/electric/lcd_display/lcd_display.srcs/sources_1/ip/vio_0/vio_0.xci
-set_property used_in_implementation false [get_files -all c:/Users/lenovo/OneDrive/Desktop/electric/lcd_display/lcd_display.srcs/sources_1/ip/vio_0/vio_0.xdc]
-set_property used_in_implementation false [get_files -all c:/Users/lenovo/OneDrive/Desktop/electric/lcd_display/lcd_display.srcs/sources_1/ip/vio_0/vio_0_ooc.xdc]
+read_ip -quiet D:/Git_Libary/test1/lcd_display/lcd_display.srcs/sources_1/ip/vio_0/vio_0.xci
+set_property used_in_implementation false [get_files -all d:/Git_Libary/test1/lcd_display/lcd_display.srcs/sources_1/ip/vio_0/vio_0.xdc]
+set_property used_in_implementation false [get_files -all d:/Git_Libary/test1/lcd_display/lcd_display.srcs/sources_1/ip/vio_0/vio_0_ooc.xdc]
 
 # Mark all dcp files as not used in implementation to prevent them from being
 # stitched into the results of this synthesis run. Any black boxes in the
@@ -50,8 +49,8 @@ set_property used_in_implementation false [get_files -all c:/Users/lenovo/OneDri
 foreach dcp [get_files -quiet -all -filter file_type=="Design\ Checkpoint"] {
   set_property used_in_implementation false $dcp
 }
-read_xdc C:/Users/lenovo/OneDrive/Desktop/electric/lcd_display/lcd_display.srcs/constrs_1/new/lcd_display.xdc
-set_property used_in_implementation false [get_files C:/Users/lenovo/OneDrive/Desktop/electric/lcd_display/lcd_display.srcs/constrs_1/new/lcd_display.xdc]
+read_xdc D:/Git_Libary/test1/lcd_display/lcd_display.srcs/constrs_1/new/lcd_display.xdc
+set_property used_in_implementation false [get_files D:/Git_Libary/test1/lcd_display/lcd_display.srcs/constrs_1/new/lcd_display.xdc]
 
 set_param ips.enableIPCacheLiteLoad 1
 close [open __synthesis_is_running__ w]

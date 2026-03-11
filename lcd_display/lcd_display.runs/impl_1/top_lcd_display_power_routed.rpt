@@ -1,7 +1,7 @@
 Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version     : Vivado v.2018.3 (win64) Build 2405991 Thu Dec  6 23:38:27 MST 2018
-| Date             : Tue Mar 10 21:08:48 2026
+| Date             : Wed Mar 11 16:25:24 2026
 | Host             : fansiyang running 64-bit major release  (build 9200)
 | Command          : report_power -file top_lcd_display_power_routed.rpt -pb top_lcd_display_power_summary_routed.pb -rpx top_lcd_display_power_routed.rpx
 | Design           : top_lcd_display
@@ -52,16 +52,16 @@ Table of Contents
 +--------------------------+-----------+----------+-----------+-----------------+
 | On-Chip                  | Power (W) | Used     | Available | Utilization (%) |
 +--------------------------+-----------+----------+-----------+-----------------+
-| Clocks                   |     0.004 |        4 |       --- |             --- |
-| Slice Logic              |     0.001 |     2838 |       --- |             --- |
-|   LUT as Logic           |     0.001 |     1221 |     53200 |            2.30 |
-|   CARRY4                 |    <0.001 |       48 |     13300 |            0.36 |
+| Clocks                   |     0.003 |        4 |       --- |             --- |
+| Slice Logic              |     0.001 |     2875 |       --- |             --- |
+|   LUT as Logic           |     0.001 |     1260 |     53200 |            2.37 |
+|   CARRY4                 |    <0.001 |       57 |     13300 |            0.43 |
 |   Register               |    <0.001 |     1048 |    106400 |            0.98 |
-|   F7/F8 Muxes            |    <0.001 |      116 |     53200 |            0.22 |
+|   F7/F8 Muxes            |    <0.001 |      110 |     53200 |            0.21 |
 |   LUT as Distributed RAM |    <0.001 |       24 |     17400 |            0.14 |
 |   Others                 |     0.000 |      111 |       --- |             --- |
-| Signals                  |     0.001 |     1946 |       --- |             --- |
-| DSPs                     |    <0.001 |        2 |       220 |            0.91 |
+| Signals                  |     0.001 |     2001 |       --- |             --- |
+| DSPs                     |    <0.001 |        1 |       220 |            0.45 |
 | I/O                      |     0.006 |       32 |       125 |           25.60 |
 | Static Power             |     0.106 |          |           |                 |
 | Total                    |     0.118 |          |           |                 |
@@ -74,7 +74,7 @@ Table of Contents
 +-----------+-------------+-----------+-------------+------------+
 | Source    | Voltage (V) | Total (A) | Dynamic (A) | Static (A) |
 +-----------+-------------+-----------+-------------+------------+
-| Vccint    |       1.000 |     0.014 |       0.006 |      0.007 |
+| Vccint    |       1.000 |     0.013 |       0.006 |      0.007 |
 | Vccaux    |       1.800 |     0.010 |       0.000 |      0.010 |
 | Vcco33    |       3.300 |     0.003 |       0.002 |      0.001 |
 | Vcco25    |       2.500 |     0.000 |       0.000 |      0.000 |

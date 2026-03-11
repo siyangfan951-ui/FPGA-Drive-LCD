@@ -60,7 +60,6 @@ proc step_failed { step } {
   close $ch
 }
 
-set_msg_config -id {Common 17-41} -limit 10000000
 
 start_step write_bitstream
 set ACTIVE_STEP write_bitstream
@@ -68,7 +67,7 @@ set rc [catch {
   create_msg_db write_bitstream.pb
   set_param xicom.use_bs_reader 1
   open_checkpoint top_lcd_display_routed.dcp
-  set_property webtalk.parent_dir C:/Users/lenovo/OneDrive/Desktop/electric/lcd_display/lcd_display.cache/wt [current_project]
+  set_property webtalk.parent_dir D:/Git_Libary/test1/lcd_display/lcd_display.cache/wt [current_project]
   catch { write_mem_info -force top_lcd_display.mmi }
   write_bitstream -force top_lcd_display.bit 
   catch {write_debug_probes -quiet -force top_lcd_display}
